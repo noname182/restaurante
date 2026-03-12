@@ -1,8 +1,5 @@
 import { Head, router } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
-import Header from '@/Components/welcome/Header/Header';
-import Footer from '@/Components/welcome/Footer';
-import { CartProvider } from '@/Contexts/CartContext';
 
 export default function Layout({ title, children }) {
     const [isBlocked, setIsBlocked] = useState(false);
@@ -24,7 +21,7 @@ export default function Layout({ title, children }) {
     }, []);
 
     return (
-        <CartProvider>
+        <>
             <Head title={title} />
 
             <div className="min-h-screen flex flex-col bg-white text-darkGray relative">
@@ -39,11 +36,7 @@ export default function Layout({ title, children }) {
                         }} 
                     />
                 )}
-
-                <Header />
-                <main className="flex-1">{children}</main>
-                <Footer />
             </div>
-        </CartProvider>
+        </>
     );
 }

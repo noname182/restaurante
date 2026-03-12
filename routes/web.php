@@ -22,43 +22,25 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomOrderController;
 
+//al iniciar la aplicacion
+Route::get('/', function () {
+    return Inertia::render('Gestion');
+})->name('home');
 
-//para ir a PaymentPage.jsx
-Route::get('/finalizar-pago', [PaymentController::class, 'index'])->name('paginaPagos');
+//desde el home para registrar pedido
+Route::get('/registrar-pedido', function () {
+    return Inertia::render('RegistrarPedido'); 
+})->name('pedidos.create');
 
-//para ir a Contact.jsx
-Route::get('/contacto', function () {
-    return Inertia::render('Contact');
-})->name('paginaContactos');
+//desde el home ir para platosXpedidos
+Route::get('/platosxpedidos', function () {
+    return Inertia::render('PlatosxPedidos'); 
+})->name('PlatosxPedidos.create');
 
-//para ir a Products.jsx
-Route::get('/productos', [ProductController::class, 'index'])->name('paginaProductos');
-
-//para el inicio
-Route::get('/', [ProductController::class, 'home'])->name('paginaInicio');
-
-//para la comidad personalizada
-Route::get('/personalizado', function () {
-    return Inertia::render('Personalized'); 
-})->name('paginaPersonalizada');
-
-//para el carrito
-Route::get('/carrito', function () {
-    return Inertia::render('Cart'); 
-})->name('cart.index');
-
-//para ir desde de paymentpage para el checkout
-Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
-
-//para poder ver detalles de un product card
-Route::get('/productos/{product}', [ProductController::class, 'showDetailed'])->name('products.showDetailed');
-
-
-//para cliente
-//Route::get('/', [FilterController::class, 'filter'])->name('filter');
-
-//para guardar cambios de los pedidos personalizados
-Route::post('/custom-orders', [CustomOrderController::class, 'store'])->name('custom-orders.store');
+//desde el home ir para verPedidos
+Route::get('/ver-pedidos', function () {
+    return Inertia::render('VerPedidos'); 
+})->name('VerPedidos.create');
 
 //para clientes
 Route::get('/buscar', [ProductController::class, 'search'])->name('products.search');
